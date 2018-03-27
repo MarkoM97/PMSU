@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">vezba1</string>
+
+    <string name="pref_sync_title">Allow Sync</string>
+    <string name="pref_sync_summ">Allow app to sync data automatically, when wifi is avalible</string>
+    <string name="pref_syncConnectionType">Sync interval</string>
+
+    <string name="pref_sync_list">pref_sync_list</string>
+    <string name="pref_radius">pref_radius</string>
+    <string name="pref_sync">pref_sync</string>
 </resources>
