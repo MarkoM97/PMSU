@@ -2,6 +2,7 @@ package com.example.marko.vezba1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 public class ReadPostsActivity extends AppCompatActivity {
@@ -10,6 +11,11 @@ public class ReadPostsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_posts);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         Toast.makeText(this, "Read all posts here",Toast.LENGTH_SHORT).show();
 
 

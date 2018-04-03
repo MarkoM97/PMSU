@@ -19,7 +19,11 @@
         <activity android:name=".PostsActivity" />
         <activity android:name=".CreatePostsActivity" />
         <activity android:name=".ReadPostsActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".Test"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -4,16 +4,30 @@ import android.preference.PreferenceActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class SettingsActivity extends PreferenceActivity {
+import com.example.marko.vezba1.utils.AppCompatPreferenceActivity;
+
+public class SettingsActivity extends PreferenceActivity{
+
+    private AppCompatDelegate appCompatDelegate;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
+
+
         //setContentView(R.layout.activity_settings);
         //Toast.makeText(this, "Personalize",Toast.LENGTH_SHORT).show();
+
+        //Bugz
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         addPreferencesFromResource(R.xml.preferences);
     }
