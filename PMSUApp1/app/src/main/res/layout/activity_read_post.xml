@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <android.support.v7.widget.ContentFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First post headline"
+                    android:textAlignment="center"
+                    android:padding="15dp"
+                    android:textSize="35dp"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text t"
+                    android:textAlignment="center"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:padding="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Like(num) Dislike(num) view comments"
+                    android:textAlignment="center"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posted : (date) by User123"
+                    android:textAlignment="center"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tag Tag Tag Tag TAg TAg"
+                    android:textAlignment="center"
+                    android:textSize="15dp"/>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.ContentFrameLayout>
+
+
+
+
+    <android.support.design.widget.NavigationView
+
+
+        android:id="@id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_posts"
+        app:menu="@menu/drawer_items" />
+
+</android.support.v4.widget.DrawerLayout>
