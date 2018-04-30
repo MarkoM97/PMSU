@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,21 +17,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostsActivity"
+            android:name=".activities.PostsActivity"
             android:label="@string/title_activity_posts"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CreatePostActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ReadPostActivity"
+            android:name=".activities.CreatePostActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--  -->
 
         <activity
-            android:name=".DetailsActivity"
-            android:label="@string/title_activity_details"
-            ></activity>
-    </application>
+            android:name=".activities.DetailsActivity"
+            android:label="@string/title_activity_details" />
+        <activity
+            android:name=".activities.ReadPostActivity"
+            android:label="@string/title_activity_read_post"
+            android:theme="@style/AppTheme.NoActionBar"
 
+            />
+    </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

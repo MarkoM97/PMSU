@@ -1,4 +1,4 @@
-package com.example.marko.app1;
+package com.example.marko.app1.utils;
 
 import android.os.Build;
 import android.preference.DialogPreference;

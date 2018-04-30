@@ -6,94 +6,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:context="com.example.marko.app1.activities.ReadPostActivity"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-
-    <android.support.v7.widget.ContentFrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp">
-        <RelativeLayout
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_marginTop="20dp"
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First post headline"
-                    android:textAlignment="center"
-                    android:padding="15dp"
-                    android:textSize="35dp"/>
+                    android:text="@string/tab_text_1" />
 
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text First post text First post text First post text First post textv First post text t"
-                    android:textAlignment="center"
-                    android:textSize="15dp"/>
+                    android:text="@string/tab_text_2" />
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:padding="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Like(num) Dislike(num) view comments"
-                    android:textAlignment="center"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Posted : (date) by User123"
-                    android:textAlignment="center"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tag Tag Tag Tag TAg TAg"
-                    android:textAlignment="center"
-                    android:textSize="15dp"/>
+            </android.support.design.widget.TabLayout>
 
 
-            </LinearLayout>
 
+        </android.support.design.widget.AppBarLayout>
 
-        </RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </android.support.v7.widget.ContentFrameLayout>
-
+    </LinearLayout>
 
 
 
     <android.support.design.widget.NavigationView
-
-
-        android:id="@id/nav_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_posts"
+        app:headerLayout="@layout/navigation_headers"
         app:menu="@menu/drawer_items" />
+
+
+
+
 
 </android.support.v4.widget.DrawerLayout>

@@ -27,7 +27,7 @@
             android:defaultValue="1"/>
 
 
-        <com.example.marko.app1.DatePreference
+        <com.example.marko.app1.utils.DatePreference
 
             android:key="keyname"
             android:title="See posts from ...."
@@ -37,7 +37,7 @@
             >
 
 
-        </com.example.marko.app1.DatePreference>
+        </com.example.marko.app1.utils.DatePreference>
 
     </PreferenceCategory>
 

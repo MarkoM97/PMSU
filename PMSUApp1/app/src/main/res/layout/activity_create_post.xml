@@ -39,7 +39,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_posts"
+        app:headerLayout="@layout/navigation_headers"
         app:menu="@menu/drawer_items" />
 
 

@@ -1,4 +1,4 @@
-package com.example.marko.app1;
+package com.example.marko.app1.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.marko.app1.R;
 
 /**
  * Created by Marko on 4/17/2018.

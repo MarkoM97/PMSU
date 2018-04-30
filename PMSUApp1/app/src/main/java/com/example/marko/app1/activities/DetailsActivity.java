@@ -1,4 +1,4 @@
-package com.example.marko.app1;
+package com.example.marko.app1.activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;

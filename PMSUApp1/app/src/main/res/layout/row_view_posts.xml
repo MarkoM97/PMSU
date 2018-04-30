@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <!--zakucane vrednosti u layoutu!!!!-->
+    <ImageView
+        android:id="@+id/postAuthorImage"
+        android:layout_width="50dp"
+
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/postAuthorUsername"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/postTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/postAuthorImage"
+        android:layout_marginBottom="11dp"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@+id/postAuthorImage"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/postAuthorUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/postAuthorImage" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/postDate"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignBaseline="@+id/postAuthorUsername"-->
+    <!--android:layout_alignBottom="@+id/postAuthorUsername"-->
+    <!--android:layout_alignStart="@+id/postTitle" />-->
+
+
+</RelativeLayout>
