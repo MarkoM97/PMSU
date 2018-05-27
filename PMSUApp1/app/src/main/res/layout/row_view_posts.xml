@@ -1,35 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:layout_margin="15dp"
+    android:orientation="horizontal">
 
-    <!--zakucane vrednosti u layoutu!!!!-->
+
     <ImageView
         android:id="@+id/postAuthorImage"
         android:layout_width="50dp"
-
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/postAuthorUsername"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/ic_info_black_24dp" />
 
-    <TextView
-        android:id="@+id/postTitle"
+    <LinearLayout
+        android:id="@+id/firstLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/postAuthorImage"
-        android:layout_marginBottom="11dp"
-        android:layout_marginStart="14dp"
-        android:layout_toEndOf="@+id/postAuthorImage"
-        android:textSize="20dp" />
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/postAuthorImage"
+        android:paddingLeft="10dp">
 
-    <TextView
-        android:id="@+id/postAuthorUsername"
+        <TextView
+            android:id="@+id/postAuthorUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textSize="10dp"
+            android:text="This is author username"
+            android:textColor="@android:color/black"
+            />
+
+
+        <TextView
+            android:id="@+id/postUploadDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textSize="10dp"
+            android:text="This is upload date"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:id="@+id/postRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textSize="10dp"
+            android:text="This is rating"
+            android:textColor="@android:color/black"
+
+            />
+
+    </LinearLayout>
+
+
+    <!--zakucane vrednosti u layoutu!!!!-->
+
+
+
+    <LinearLayout
+        android:id="@+id/secondLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/postAuthorImage"
+        android:layout_below="@id/firstLinearLayout">
+
+        <TextView
+            android:id="@+id/postTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:text="Title obvioslty"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!--android:layout_toRightOf="@id/postAuthorImage"-->
+    <LinearLayout
+        android:id="@+id/thirdLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/postAuthorImage" />
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/postAuthorImage"
+        android:layout_below="@id/secondLinearLayout"
+        android:paddingLeft="10dp">
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/post_tag_1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="tag 1"-->
+            <!--android:textSize="10dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textStyle="italic"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/post_tag_2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="tag 2"-->
+            <!--android:textSize="10dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textStyle="italic"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/post_tag_3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="tag 3"-->
+            <!--android:textSize="10dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textStyle="italic"/>-->
+
+
+    </LinearLayout>
+    
+
+
+
 
     <!--<TextView-->
     <!--android:id="@+id/postDate"-->

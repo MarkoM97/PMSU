@@ -1,8 +1,12 @@
 package com.example.marko.app1.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,39 +14,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marko.app1.R;
-import com.example.marko.app1.activities.DetailsActivity;
-import com.example.marko.app1.activities.PostsActivity;
+import com.example.marko.app1.RESTService.Service;
 import com.example.marko.app1.fragments.ReadCommentsFragment;
 import com.example.marko.app1.fragments.ReadPostFragment;
+import com.example.marko.app1.model.User;
+import com.example.marko.app1.utils.AppUtils;
 import com.example.marko.app1.utils.SectionsPageAdapter;
+import com.squareup.picasso.Picasso;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReadPostActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
+    private static int postId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +53,21 @@ public class ReadPostActivity extends AppCompatActivity implements NavigationVie
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         mSectionsPageAdapter.addFragment(new ReadPostFragment(), "readPostFragment");
         mSectionsPageAdapter.addFragment(new ReadCommentsFragment(), "readCommentsFragment");
 
+        String postID = getIntent().getStringExtra("postID");
+        postId = Integer.valueOf(postID);
 
+        Bundle readPostBundle = new Bundle();
+        readPostBundle.putString("postID", postID);
+        mSectionsPageAdapter.getItem(0).setArguments(readPostBundle);
+        Bundle readCommentsBundle = new Bundle();
+        readCommentsBundle.putString("postID",postID);
+        mSectionsPageAdapter.getItem(1).setArguments(readCommentsBundle);
 
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPageAdapter);
 
@@ -77,26 +85,36 @@ public class ReadPostActivity extends AppCompatActivity implements NavigationVie
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView = navigationView.inflateHeaderView(R.layout.navigation_headers);
+
+        TextView userInNavDrawer = headerView.findViewById(R.id.navigationHeaderText);
+        userInNavDrawer.setText(AppUtils.LoggedInUser.getLoggedInUser().getUsername());
+
+        final ImageView userImageInNavDrawer = headerView.findViewById(R.id.navigationHeaderImage);
+        Picasso.get().load(AppUtils.LoggedInUser.getLoggedInUser().getPhotoURL()).resize(100,100).into(userImageInNavDrawer, new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+                Bitmap imageBitmap = ((BitmapDrawable) userImageInNavDrawer.getDrawable()).getBitmap();
+                RoundedBitmapDrawable roundedBitmap = RoundedBitmapDrawableFactory.create(getApplication().getResources(), imageBitmap);
+                roundedBitmap.setCircular(true);
+                roundedBitmap.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight()) / 2.0f);
+                userImageInNavDrawer.setImageDrawable(roundedBitmap);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
 
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -104,19 +122,7 @@ public class ReadPostActivity extends AppCompatActivity implements NavigationVie
             fragment.setArguments(args);
             return fragment;
         }
-
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//
-//            View rootView = inflater.inflate(R.layout.fragment_read_post, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-//            return rootView;
-//        }
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -129,41 +135,69 @@ public class ReadPostActivity extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.posts, menu);
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_single_post, menu);
+
+        Call<User> userCall = Service.service.restApi.getUserByPostId(postId);
+        userCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user = response.body();
+                if(user != null) {
+                    if(user.getId() == AppUtils.LoggedInUser.getLoggedInUser().getId()) {
+                        MenuItem item = menu.findItem(R.id.toolbar_delete_post_button);
+                        item.setVisible(true);
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.toolbar_create_post_button) {
+            startActivity(new Intent(this, CreatePostActivity.class));
             return true;
-        }
+        } else if(id == R.id.toolbar_delete_post_button) {
+            Call<ResponseBody> deleteCall = Service.service.restApi.deletePost(postId);
+            deleteCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    Toast.makeText(ReadPostActivity.this, "Post deleted successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), PostsActivity.class));
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                }
+            });
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        Log.d("STATE","Clicked");
-
-
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Toast.makeText(this, "Registered", Toast.LENGTH_SHORT);
             startActivity(new Intent(this, PostsActivity.class));
+        } else if(id == R.id.createPostNavButton) {
+            startActivity(new Intent(this, CreatePostActivity.class));
         } else if (id == R.id.nav_gallery) {
-            startActivity(new Intent(this,DetailsActivity.class));
+            startActivity(new Intent(this,SettingsActivity.class));
+        } else if(id == R.id.nav_logout) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

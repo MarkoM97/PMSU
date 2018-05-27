@@ -9,39 +9,36 @@ import java.util.List;
  */
 
 public class User {
-    private int ID;
-    private Bitmap photo;
+    private int id;
+    private String photoURL;
     private String username;
     private String password;
-    private List<Post> posts;
-    private List<Comment> comments;
 
     public User() {
     }
 
-    public User(int ID, Bitmap photo, String username, String password, List<Post> posts, List<Comment> comments) {
-        this.ID = ID;
-        this.photo = photo;
+    public User(int id, String photoURL, String username, String password) {
+        this.id = id;
+        this.photoURL = photoURL;
         this.username = username;
         this.password = password;
-        this.posts = posts;
-        this.comments = comments;
     }
 
-    public int getID() {
-        return ID;
+
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Bitmap getPhoto() {
-        return photo;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public String getUsername() {
@@ -60,19 +57,4 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

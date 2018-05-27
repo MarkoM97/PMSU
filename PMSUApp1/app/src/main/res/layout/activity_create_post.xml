@@ -2,46 +2,149 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <FrameLayout
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="30dp">
+
+
+                        <EditText
+                            android:id="@+id/createPostTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Post title"
+                            android:layout_margin="10dp" />
+
+                        <EditText
+                            android:id="@+id/createPostDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Post description"
+                            android:layout_margin="10dp" />
+
+                        <Button
+                            android:id="@+id/choose_image_from_gallery"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="Choose image ... " />
+
+                        <!--Adjust view bounds obezbedjuje da se canvas(slika) unutar imageView-a skalira proporcionalno tj u ovom-->
+                        <!--slucaju preko maxHeight atributa-->
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/display_image_from_gallery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxHeight="300dp"
+                            android:adjustViewBounds="true"
+                            />
+
+
+
+                        <TextView
+                            android:id="@+id/location_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Obtaining location ... "
+                            android:layout_marginLeft="18dp"/>
+
+
+
+                        <LinearLayout
+                            android:id="@+id/createPostLinLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp">
+
+
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/addTagBtn"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginLeft="18dp"
+                            android:text="add tag"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </FrameLayout>
+
+</RelativeLayout>
+
+
+
+    <!--NAVODNO-->
+    <!--RASPORED-->
+    <!--ELEMENATA-->
+    <!--U XML-->
+    <!--IMA SMISLA-->
+    <!--3H SI IMAO PROBLEMA JER JE INCLUDE TOOLBARA BIO ISPRED OVIH SOTONJARIJA GORE-->
+    <!--STO JE DOVODILO DO OVERLAPA FRAME LAYOUTA NA TOOLBAR-->
+    <!--PAZI PAZI PAZI!!!-->
+
     <include
+        android:id="@+id/appbarcreatepost"
         layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="50dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is some text yo!"/>
-
-        </LinearLayout>
-
-    </FrameLayout>
 
     <android.support.design.widget.NavigationView
-
-
-        android:id="@id/nav_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/navigation_headers"
-        app:menu="@menu/drawer_items" />
 
+        app:menu="@menu/drawer_items" />
+    <!--app:headerLayout="@layout/navigation_headers"-->
 
 
 </android.support.v4.widget.DrawerLayout>

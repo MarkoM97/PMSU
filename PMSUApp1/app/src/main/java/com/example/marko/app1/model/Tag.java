@@ -7,40 +7,30 @@ import java.util.List;
  */
 
 public class Tag {
-    private int ID;
-    private String name;
-    private List<Post> posts;
+    private int id;
+    private String content;
 
-    public Tag(int ID, String name, List<Post> posts) {
-        this.ID = ID;
-        this.name = name;
-        this.posts = posts;
+    public Tag(int id, String content) {
+        this.id = id;
+        this.content = content;
     }
 
     public Tag() {
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

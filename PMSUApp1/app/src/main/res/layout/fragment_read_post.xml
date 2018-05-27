@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@android:color/white">
 
 
 
@@ -16,138 +17,190 @@
                     <LinearLayout android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:orientation="vertical"
+                        android:padding="15dp"
                         >
 
 
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp">
 
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-
-                                <ImageView
-                                    android:id="@+id/authorPhoto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:srcCompat="@mipmap/ic_markic" />
-
-                                <TextView
-                                    android:id="@+id/authorUsername"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-
-                            </LinearLayout>
 
 
                             <TextView
                                 android:id="@+id/lblTitle"
-                                android:layout_marginTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Title of the post"
+                                android:textAlignment="center"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/lblDescription"
+                                android:padding="15dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="center"
-                                android:padding="15dp"
-                                android:textSize="20dp"/>
+                                android:layout_gravity="center"
+                                android:textSize="15dp"
+                                android:text="Post description"
+                                android:textColor="@android:color/black"
+                                />
+
+                        </LinearLayout>
+
+
+                        <!--<View-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="0.5dp"-->
+                            <!--android:background="@color/colorPrimaryDark"/>-->
 
 
 
-
-
-
-
-                            
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="@color/colorPrimaryDark"/>
-
-
-
-                        <TextView
-                            android:id="@+id/lblDescription"
-                            android:layout_marginTop="5dp"
-                            android:padding="15dp"
+                        <!--scale type center crop kako bi picasso mogao da skalira sliku bez gubitaka-->
+                        <ImageView
+                            android:maxHeight="300dp"
+                            android:id="@+id/postImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textSize="20dp"/>
-
-
-                        <ImageView
-                            android:id="@+id/bitmapImage"
-                            android:layout_width="match_parent"
-                            android:layout_height="226dp"
-                            app:srcCompat="@mipmap/ic_post" />
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"/>
+                            <!--app:srcCompat="@drawable/ic_info_black_24dp" />-->
 
 
 
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/likeButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Like"
-                                    />
-
-                                <TextView
-                                    android:id="@+id/numLikes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <Button
-                                    android:id="@+id/dislikeButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Dislike"
-                                    />
-
-                                <TextView
-                                    android:id="@+id/numDislikes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
 
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp">
+
+
+                            <ImageView
+                                android:id="@+id/likePostBtn"
+                                android:layout_width="76dp"
+                                android:layout_height="35dp"/>
+                                <!--app:srcCompat="@drawable/ic_like" />-->
+
+                            <ImageView
+                                android:id="@+id/dislikePostBtn"
+                                android:layout_width="71dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"/>
+                                <!--app:srcCompat="@drawable/ic_dislike" />-->
 
                             <TextView
-                                android:id="@+id/posted"
+                                android:id="@+id/likeDislikeId"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="invisible"/>
 
                             <TextView
-                                android:id="@+id/location"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:text="Rating: "
+                                android:textStyle="italic"/>
+
+
+                            <TextView
+                                android:id="@+id/readPost_postRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingTop="5dp"
+                                android:text="15"
+                                android:textAlignment="center"
+                                android:textStyle="italic" />
+
+
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/authorUsername"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Author's username"/>-->
+
 
                         </LinearLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/tags"
+                        <LinearLayout
+                            android:id="@+id/TagLinearLayout"
+                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp">
 
 
 
-                        </RelativeLayout>
+                        </LinearLayout>
 
+
+
+                        <!--textview.setPaintFlags(textview.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);-->
+
+
+                        <TextView
+                            android:layout_marginLeft="45dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Post info"/>
+
+                        <View
+                            android:layout_gravity="center"
+                            android:id="@+id/divider"
+                            android:layout_width="264dp"
+                            android:layout_height="1dp"
+                            android:background="@android:color/black" />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/authorPhoto"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/ic_markic" />
+
+                            <TextView
+                                android:id="@+id/post_created"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tue 1 May 2018"
+                                />
+
+
+                            <TextView
+                                android:id="@+id/post_location"
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginBottom="20dp"
+                                />
+
+
+
+                        </LinearLayout>
 
                     </LinearLayout>
 

@@ -1,51 +1,58 @@
 package com.example.marko.app1.model;
 
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Marko on 4/17/2018.
  */
 
 public class Post {
-    private int ID;
+    private int id;
     private String title;
     private String description;
-    private Bitmap photo;
-    private User author;
-    private Date date;
-    private Location location;
-    private List<Tag> tags;
-    private List<Comment> comments;
-    private int likes;
-    private int dislikes;
+    private String photoURL;
+    private int author_id;
+    private String created;
+
+    private String location;
+
+    //metode za konvertovanje
+//    private Date date;
+//    private Location location;
+    private int numberLikes;
+    private int numberDislikes;
 
     public Post() {
     }
 
-    public Post(int ID, String title, String description, Bitmap photo, User author, Date date, Location location, List<Tag> tags, List<Comment> comments, int likes, int dislikes) {
-        this.ID = ID;
+    public Post(int id, String title, String description, String photoURL, int author_id, String created, String location, int numberLikes, int numberDislikes) {
+        this.id = id;
         this.title = title;
         this.description = description;
-        this.photo = photo;
-        this.author = author;
-        this.date = date;
+        this.photoURL = photoURL;
+        this.author_id = author_id;
+        this.created = created;
         this.location = location;
-        this.tags = tags;
-        this.comments = comments;
-        this.likes = likes;
-        this.dislikes = dislikes;
+        this.numberLikes = numberLikes;
+        this.numberDislikes = numberDislikes;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -64,67 +71,82 @@ public class Post {
         this.description = description;
     }
 
-    public Bitmap getPhoto() {
-        return photo;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
-    public User getAuthor() {
-        return author;
+    public int getAuthor_id() {
+        return author_id;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getCreated() {
+        return created;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public List<Tag> getTags() {
-        return tags;
+    public int getNumberLikes() {
+        return numberLikes;
     }
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
+    public void setNumberLikes(int numberLikes) {
+        this.numberLikes = numberLikes;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public int getNumberDislikes() {
+        return numberDislikes;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setNumberDislikes(int numberDislikes) {
+        this.numberDislikes = numberDislikes;
     }
 
-    public int getLikes() {
-        return likes;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", photoURL='" + photoURL + '\'' +
+                ", author_id=" + author_id +
+                ", created='" + created + '\'' +
+                ", location='" + location + '\'' +
+                ", numberLikes=" + numberLikes +
+                ", numberDislikes=" + numberDislikes +
+                '}';
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
+    //HMM DA LI SME?
+//    public void setDateAsString(String stringDate) {
+//        /**format is dd/mm/yyyy*/
+//        //Log.d("vreme", Calendar.getInstance().getTime().toString());
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//
+//        Date postCreated = null;
+//        try {
+//            postCreated = formatter.parse(stringDate);
+//            this.date = postCreated;
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    public int getDislikes() {
-        return dislikes;
-    }
-
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
-    }
 }

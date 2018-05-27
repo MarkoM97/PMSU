@@ -8,94 +8,108 @@ import java.util.Date;
  */
 
 public class Comment {
-    private int ID;
+    private int id;
     private String title;
     private String description;
-    private User author;
-    private Date date;
-    private Post post;
-    private int likes;
-    private int dislikes;
+    private String created;
+    private int author_id;
+    private int post_id;
+    private int numberLikes;
+    private int numberDislikes;
+    //Implementirati metodu
+//    private Date date;
+
 
     public Comment() {
 
     }
 
-    public Comment(int ID, String title, String description, User author, Date date, Post post, int likes, int dislikes) {
-        this.ID = ID;
+    public Comment(int id, String title, String description, int author_id, String created, int post_id, int numberLikes, int numberDislikes) {
+        this.id = id;
         this.title = title;
         this.description = description;
-        this.author = author;
-        this.date = date;
-        this.post = post;
-        this.likes = likes;
-        this.dislikes = dislikes;
+        this.author_id = author_id;
+        this.created = created;
+        this.post_id = post_id;
+        this.numberLikes = numberLikes;
+        this.numberDislikes = numberDislikes;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
-    }
-
-    public String getTitle() {
-
-        return title;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public User getAuthor() {
-        return author;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getDate() {
-        return date;
+    public int getAuthor_id() {
+        return author_id;
     }
 
-    public Post getPost() {
-        return post;
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
     }
 
-    public int getLikes() {
-        return likes;
+    public String getCreated() {
+        return created;
     }
 
-    public int getDislikes() {
-        return dislikes;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
-    //private Status status;
+    public int getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(int post_id) {
+        this.post_id = post_id;
+    }
+
+    public int getNumberLikes() {
+        return numberLikes;
+    }
+
+    public void setNumberLikes(int numberLikes) {
+        this.numberLikes = numberLikes;
+    }
+
+    public int getNumberDislikes() {
+        return numberDislikes;
+    }
+
+    public void setNumberDislikes(int numberDislikes) {
+        this.numberDislikes = numberDislikes;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", created='" + created + '\'' +
+                ", author_id=" + author_id +
+                ", post_id=" + post_id +
+                ", numberLikes=" + numberLikes +
+                ", numberDislikes=" + numberDislikes +
+                '}';
+    }
 }

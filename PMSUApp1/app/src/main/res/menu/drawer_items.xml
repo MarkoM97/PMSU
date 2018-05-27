@@ -8,8 +8,13 @@
             <menu>
             <item android:titleCondensed="Discover"
                 android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_menu_gallery"
                 android:title="Browse all posts" />
+
+                <item android:titleCondensed="Create"
+                    android:id="@+id/createPostNavButton"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Create post" />
             </menu>
         </item>
         <item android:title="Personalize">
@@ -17,10 +22,14 @@
 
                 <item android:titleCondensed="Manage"
                     android:id="@+id/nav_gallery"
-                    android:icon="@drawable/ic_menu_gallery"
+                    android:icon="@drawable/ic_menu_manage"
                     android:title="Enter preferences" />
             </menu>
         </item>
+
+        <item android:title="Logout"
+            android:icon="@drawable/ic_logout"
+            android:id="@+id/nav_logout"/>
 
     </group>
 </menu>

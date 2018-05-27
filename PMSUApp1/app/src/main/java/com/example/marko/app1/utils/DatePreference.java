@@ -23,6 +23,8 @@ public class DatePreference  extends DialogPreference{
     private String dateval;
     private CharSequence mSummary;
     private DatePicker picker = null;
+
+
     public static int getYear(String dateval) {
         String[] pieces = dateval.split("-");
         return (Integer.parseInt(pieces[0]));
@@ -30,7 +32,7 @@ public class DatePreference  extends DialogPreference{
 
     public static int getMonth(String dateval) {
         String[] pieces = dateval.split("-");
-        return (Integer.parseInt(pieces[1]));
+        return (Integer.parseInt(pieces[1]) - 1);
     }
 
     public static int getDate(String dateval) {
@@ -60,8 +62,8 @@ public class DatePreference  extends DialogPreference{
     @Override
     protected void onBindDialogView(View v) {
         super.onBindDialogView(v);
-
-        picker.updateDate(lastYear, lastMonth + 1, lastDate);
+        //ovde lastMonth + 1
+        picker.updateDate(lastYear, lastMonth, lastDate);
     }
 
     @Override
@@ -73,9 +75,31 @@ public class DatePreference  extends DialogPreference{
             lastMonth = picker.getMonth();
             lastDate = picker.getDayOfMonth();
 
-            String dateval = String.valueOf(lastYear) + "-"
-                    + String.valueOf(lastMonth) + "-"
-                    + String.valueOf(lastDate);
+
+
+
+            //Estetski, nebitan kod u principu
+            String valOfLastYear = String.valueOf(lastYear);
+            //Estetski, nebitan kod u principu x2
+            String valOfLastMonth;
+            if(lastMonth >= 9) {
+                valOfLastMonth = String.valueOf(lastMonth + 1);
+            } else {
+                valOfLastMonth = "0" + String.valueOf(lastMonth + 1);
+            }
+            //Estetski, nebitan kod u principu x3
+            String valOfLastDate;
+            if(lastDate >= 10) {
+                valOfLastDate = String.valueOf(lastDate);
+            } else {
+                valOfLastDate = "0" + String.valueOf(lastDate);
+            }
+
+
+            //Bitno af
+            String dateval = valOfLastYear + "-"
+                    + valOfLastMonth + "-"
+                    + valOfLastDate;
 
             if (callChangeListener(dateval)) {
                 persistString(dateval);
