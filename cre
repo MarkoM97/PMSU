@@ -1,0 +1,104 @@
+--USE master;
+----IF EXISTS(select * from sys.databases where name='Timesheet')
+----DROP DATABASE Timesheet;
+
+USE master;
+CREATE DATABASE Timesheet;
+GO
+USE Timesheet;
+
+DROP TABLE IF EXISTS Timesheet;
+DROP TABLE IF EXISTS ProjectCategory;
+DROP TABLE IF EXISTS Project;
+DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS Client;
+DROP TABLE IF EXISTS Country;
+
+
+CREATE TABLE Country(
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50)
+);
+
+INSERT INTO Country VALUES ('Serbia');
+INSERT INTO Country VALUES ('Croatia');
+INSERT INTO Country VALUES ('BiH');
+
+
+CREATE TABLE Client(
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50) NOT NULL UNIQUE,
+	[Address] VARCHAR(50) NOT NULL,
+	[ZipCode] VARCHAR(50) NOT NULL,
+	[City] VARCHAR(50) NOT NULL,
+	[CountryId] TINYINT FOREIGN KEY REFERENCES Country(Id)
+);
+
+INSERT INTO Client VALUES ('Cli1', 'Adr1', 'Zip1', 'Novi Sad', 1);
+INSERT INTO Client VALUES ('Cli2', 'Adr2', 'Zip2', 'Beograd', 1);
+INSERT INTO Client VALUES ('Cli3', 'Adr3', 'Zip3', 'Subotica', 1);
+
+
+CREATE TABLE Employee(
+
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50) NOT NULL,
+	[Email] VARCHAR(50) NOT NULL UNIQUE,
+	[Password] VARCHAR(50) NOT NULL,
+	[isActive] TINYINT NOT NULL,
+	[Role] TINYINT NOT NULL,
+);
+
+INSERT INTO Employee VALUES ('emp1', 'ema1', 'pass1', 1, 0);
+INSERT INTO Employee VALUES ('emp2', 'ema2', 'pass2', 1, 0);
+INSERT INTO Employee VALUES ('emp3', 'ema3', 'pass3', 1, 0);
+
+
+CREATE TABLE Category(
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50) NOT NULL UNIQUE
+);
+
+INSERT INTO Category VALUES ('frontend');
+INSERT INTO Category VALUES ('bekend');
+INSERT INTO Category VALUES ('dizajn');
+
+CREATE TABLE Project (
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50) NOT NULL UNIQUE,
+	[LeadId] TINYINT FOREIGN KEY REFERENCES Employee(Id),
+	[ClientId] TINYINT FOREIGN KEY REFERENCES Client(Id)
+);
+
+INSERT INTO Project VALUES ('proj1', 1,1);
+INSERT INTO Project VALUES ('proj2', 2,2);
+INSERT INTO Project VALUES ('proj3', 3,3);
+
+
+CREATE TABLE ProjectCategory(
+	[ProjectId] TINYINT FOREIGN KEY REFERENCES Project(Id),
+	[CategoryId] TINYINT FOREIGN KEY REFERENCES Category(Id)
+);
+
+INSERT INTO ProjectCategory VALUES (1,1);
+INSERT INTO ProjectCategory VALUES (2,2);
+INSERT INTO ProjectCategory VALUES (2,2);
+
+
+CREATE TABLE Timesheet (
+	[Id] TINYINT PRIMARY KEY IDENTITY(1,1),
+	[Name] VARCHAR(50) NOT NULL UNIQUE,
+	[Description]  VARCHAR(50) NOT NULL,
+	[Date] DATETIME NOT NULL,
+	[Time] DECIMAL NOT NULL,
+	[Overtime] DECIMAL,
+	[ProjectId] TINYINT FOREIGN KEY REFERENCES Project(Id),
+	[CategoryId] TINYINT FOREIGN KEY REFERENCES Category(Id),
+	[EmployeeId] TINYINT FOREIGN KEY REFERENCES Employee(Id),
+	[ClientId] TINYINT FOREIGN KEY REFERENCES Client(Id)
+);
+
+INSERT INTO Timesheet VALUES ('timeh1', 'desc1', '01/01/2001', 8, 0, 1,1,1,1);
+INSERT INTO Timesheet VALUES ('timeh2', 'desc2', '02/01/2001', 8, 0, 2,2,2,2);
+INSERT INTO Timesheet VALUES ('timeh3', 'desc3', '03/01/2001', 8, 0, 2,2,2,2);
